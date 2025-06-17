@@ -2,6 +2,7 @@ package com.example.Zomato.ZomatoApplication.entites;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,7 +13,8 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Wallet {
+@Builder(setterPrefix = "set")
+public class WalletEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +26,5 @@ public class Wallet {
     private LocalDateTime createdAt;
 
     @OneToOne(mappedBy = "wallet")
-    private Customer customer;
+    private CustomerEntity customerEntity;
 }

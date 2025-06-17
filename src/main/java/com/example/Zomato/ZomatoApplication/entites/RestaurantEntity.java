@@ -1,6 +1,5 @@
 package com.example.Zomato.ZomatoApplication.entites;
 
-import com.example.Zomato.ZomatoApplication.enums.PaymentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,17 +11,18 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cart {
+public class RestaurantEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    private List<Items> items;
+    private String name;
 
-    private double total;
+    private String address;
 
-    @OneToOne(mappedBy = "cart")
-    private Customer customer;
+    @OneToMany(mappedBy = "restaurant")
+    private List<ItemsEntity> menuItems;
+
+    private Double rating;
 }

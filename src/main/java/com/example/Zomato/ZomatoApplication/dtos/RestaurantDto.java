@@ -16,4 +16,9 @@ public class RestaurantDto {
     private String name;
     private String address;
     private List<ItemsDto> menuItems;
+    private Double rating;
+
+    public RestaurantDto(Double rating) {
+        this.rating = rating;
+    }
 }

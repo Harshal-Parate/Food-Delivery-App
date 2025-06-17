@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Order {
+public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +32,11 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    private CustomerEntity customerEntity;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Items> items;
+    private List<ItemsEntity> items;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private Delivery delivery;
+    private DeliveryEntity deliveryEntity;
 }

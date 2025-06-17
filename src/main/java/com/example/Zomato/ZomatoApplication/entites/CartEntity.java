@@ -11,16 +11,17 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Restaurant {
+public class CartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @OneToMany
+    private List<ItemsEntity> items;
 
-    private String address;
+    private double total;
 
-    @OneToMany(mappedBy = "restaurant")
-    private List<Items> menuItems;
+    @OneToOne(mappedBy = "cart")
+    private CustomerEntity customerEntity;
 }

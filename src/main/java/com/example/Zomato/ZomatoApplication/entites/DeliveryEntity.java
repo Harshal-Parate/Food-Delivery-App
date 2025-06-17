@@ -1,8 +1,6 @@
 package com.example.Zomato.ZomatoApplication.entites;
 
 import com.example.Zomato.ZomatoApplication.enums.DeliveryStatus;
-import com.example.Zomato.ZomatoApplication.enums.PaymentStatus;
-import com.example.Zomato.ZomatoApplication.enums.PaymentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Delivery {
+public class DeliveryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +25,10 @@ public class Delivery {
 
     @ManyToOne
     @JoinColumn(name = "driver_id")
-    private Driver driver;
+    private DriverEntity driverEntity;
 
     @OneToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private OrderEntity orderEntity;
 }
 

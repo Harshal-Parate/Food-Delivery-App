@@ -2,6 +2,7 @@ package com.example.Zomato.ZomatoApplication.entites;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+@Builder(setterPrefix = "set")
+public class CustomerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +24,12 @@ public class Customer {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wallet_id")
-    private Wallet wallet;
+    private WalletEntity walletEntity;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    private CartEntity cartEntity;
 
     @OneToMany(mappedBy = "customer")
-    private List<Order> orders;
+    private List<OrderEntity> orderEntities;
 }

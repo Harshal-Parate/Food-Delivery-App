@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Driver {
+public class DriverEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +20,5 @@ public class Driver {
     private String name;
 
     @OneToMany(mappedBy = "driver")
-    private List<Delivery> deliveries;
+    private List<DeliveryEntity> deliveries;
 }
