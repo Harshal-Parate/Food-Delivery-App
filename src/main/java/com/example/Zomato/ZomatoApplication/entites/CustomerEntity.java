@@ -12,7 +12,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(setterPrefix = "set")
 public class CustomerEntity {
 
     @Id
@@ -24,12 +23,12 @@ public class CustomerEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wallet_id")
-    private WalletEntity walletEntity;
+    private WalletEntity wallet;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
-    private CartEntity cartEntity;
+    private CartEntity cart;
 
     @OneToMany(mappedBy = "customer")
-    private List<OrderEntity> orderEntities;
+    private List<OrderEntity> orders;
 }

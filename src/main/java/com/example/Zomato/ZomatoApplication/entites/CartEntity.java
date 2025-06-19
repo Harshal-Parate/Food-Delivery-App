@@ -1,5 +1,6 @@
 package com.example.Zomato.ZomatoApplication.entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,5 +24,5 @@ public class CartEntity {
     private double total;
 
     @OneToOne(mappedBy = "cart")
-    private CustomerEntity customerEntity;
+    private CustomerEntity customer;
 }

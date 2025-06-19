@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 public class DeliveryDto {
 
     private Long id;
-    private DeliveryStatus status;
     private LocalDateTime deliveryTime;
-    private DriverDto driver;
-    private OrderDto order;
+    private DeliveryStatus status;
+    private Long orderId;
+    private Long driverId;
 }
 

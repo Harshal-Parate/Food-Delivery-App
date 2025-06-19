@@ -14,5 +14,4 @@ public class DriverDto {
 
     private Long id;
     private String name;
-    private List<DeliveryDto> deliveries;
 }

@@ -4,6 +4,7 @@ import com.example.Zomato.ZomatoApplication.dtos.ItemsDto;
 import com.example.Zomato.ZomatoApplication.dtos.RestaurantDto;
 import com.example.Zomato.ZomatoApplication.entites.ItemsEntity;
 import com.example.Zomato.ZomatoApplication.entites.RestaurantEntity;
+import com.example.Zomato.ZomatoApplication.repositories.ItemRepository;
 import com.example.Zomato.ZomatoApplication.repositories.RestaurantRepository;
 import com.example.Zomato.ZomatoApplication.services.Impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +20,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
     private final ModelMapper mapper;
+    private final ItemRepository itemRepository;
 
     @Override
     public RestaurantDto createRestaurant(RestaurantDto restaurantDto) {
-        Optional<RestaurantEntity> restaurantEntity = restaurantRepository.findById(restaurantDto.getId());
+        Optional<RestaurantEntity> restaurantEntity = restaurantRepository.findByName(restaurantDto.getName());
         if (restaurantEntity.isPresent()) {
-            throw new RuntimeException("Restaurant by the ID: " + restaurantEntity.get().getId() + " already present.");
+            throw new RuntimeException("Restaurant by the ID: " + restaurantEntity.get().getName() + " already present.");
         }
-        RestaurantEntity savedRestaurant = restaurantRepository.save(restaurantEntity.get());
+        RestaurantEntity savedRestaurant = restaurantRepository.save(mapper.map(restaurantDto, RestaurantEntity.class));
         return mapper.map(savedRestaurant, RestaurantDto.class);
     }
 
@@ -64,7 +66,7 @@ public class RestaurantServiceImpl implements RestaurantService {
             for (int j = 0; j < existingItems.size(); j++) {
                 ItemsEntity oldItem = existingItems.get(j);
 
-                if (Objects.equals(oldItem.getId(), newItem.getId())) {
+                if (Objects.equals(oldItem.getName(), newItem.getName())) {
                     oldItem.setQuantity(oldItem.getQuantity() + newItem.getQuantity());
                     found = true;
                     break;
@@ -72,8 +74,9 @@ public class RestaurantServiceImpl implements RestaurantService {
             }
 
             if (!found) {
-                newItem.setRestaurantEntity(restaurant); // Maintain relationship
+                newItem.setRestaurant(restaurant);
                 existingItems.add(newItem);
+                itemRepository.save(newItem);
             }
         }
 
@@ -91,30 +94,30 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         for (int i = 0; i < items.size(); i++) {
             ItemsDto itemDto = items.get(i);
-            Long removeId = itemDto.getId();
+            String removedName = itemDto.getName();
             int removeQty = itemDto.getQuantity();
 
             boolean found = false;
 
-            for (int j = 0; j < existingItems.size(); j++) {
-                ItemsEntity oldItem = existingItems.get(j);
+            Iterator<ItemsEntity> iterator = existingItems.iterator();
+            while (iterator.hasNext()) {
+                ItemsEntity oldItem = iterator.next();
 
-                if (Objects.equals(oldItem.getId(), removeId)) {
+                if (oldItem.getName().equalsIgnoreCase(removedName)) {
                     found = true;
-                    int currentQty = oldItem.getQuantity();
-                    if (removeQty >= currentQty) {
-                        // Remove item
-                        existingItems.remove(j);
+                    if (removeQty >= oldItem.getQuantity()) {
+                        iterator.remove();
+                        oldItem.setRestaurant(null);
+                        itemRepository.save(oldItem);
                     } else {
-                        // Subtract quantity
-                        oldItem.setQuantity(currentQty - removeQty);
+                        oldItem.setQuantity(oldItem.getQuantity() - removeQty);
                     }
                     break;
                 }
             }
 
             if (!found) {
-                throw new RuntimeException("Item with ID: " + removeId + " not found in the menu.");
+                throw new RuntimeException("Item with name: " + removedName + " not found in the menu.");
             }
         }
 
@@ -122,6 +125,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         RestaurantEntity saved = restaurantRepository.save(restaurant);
         return mapper.map(saved, RestaurantDto.class);
     }
+
 
 
     @Override

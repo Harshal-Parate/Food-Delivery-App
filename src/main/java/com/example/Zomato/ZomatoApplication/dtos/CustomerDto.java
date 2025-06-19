@@ -15,7 +15,6 @@ public class CustomerDto {
     private Long id;
     private String name;
     private String email;
-    private WalletDto wallet;
-    private CartDto cart;
-    private List<OrderDto> orders;
+    private Long walletId;
+    private Long cartId;
 }

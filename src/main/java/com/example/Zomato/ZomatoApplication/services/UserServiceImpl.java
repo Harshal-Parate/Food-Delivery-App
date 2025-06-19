@@ -5,7 +5,9 @@ import com.example.Zomato.ZomatoApplication.entites.CustomerEntity;
 import com.example.Zomato.ZomatoApplication.entites.UserEntity;
 import com.example.Zomato.ZomatoApplication.entites.WalletEntity;
 import com.example.Zomato.ZomatoApplication.enums.Roles;
+import com.example.Zomato.ZomatoApplication.repositories.CustomerRepository;
 import com.example.Zomato.ZomatoApplication.repositories.UserRepository;
+import com.example.Zomato.ZomatoApplication.repositories.WalletRepository;
 import com.example.Zomato.ZomatoApplication.services.Impl.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final WalletRepository walletRepository;
+    private final CustomerRepository customerRepository;
     private final ModelMapper mapper;
 
     @Override
@@ -34,37 +38,41 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDto onBoardCustomer(UserDto user) {
-        UserDto userDto = userRepository.findByEmail(user.getEmail())
-                .orElseThrow(() -> new RuntimeException("User with email: " + user.getEmail() + " already exists."));
+    public UserDto onBoardCustomer(UserDto userDto) {
+        Optional<UserEntity> existingUser = userRepository.findByEmail(userDto.getEmail());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("User with email: " + userDto.getEmail() + " already exists.");
+        }
 
-        UserEntity newUserEntity = mapper.map(userDto, UserEntity.class);
+        UserEntity userEntity = mapper.map(userDto, UserEntity.class);
+        userEntity.setRole(Roles.CUSTOMER);
 
-        // default role will be customer
+        // Create customer
+        CustomerEntity customer = new CustomerEntity();
+        customer.setName(userDto.getName());
+        customer.setEmail(userDto.getEmail());
 
-        CustomerEntity customer = CustomerEntity
-                .builder()
-                .setEmail(newUserEntity.getEmail())
-                .setName(newUserEntity.getName())
-                .build();
+        // Create wallet
+        WalletEntity wallet = new WalletEntity();
+        wallet.setBalance(0.0);
+        wallet.setCustomer(customer);
 
-        WalletEntity wallet = WalletEntity
-                .builder()
-                .setBalance(0.0)
-                .setCustomerEntity(customer)
-                .build();
+        customer.setWallet(wallet); // bidirectional
 
-        UserEntity savedUser = userRepository.save(newUserEntity);
-        return mapper.map(savedUser, UserDto.class);
+        walletRepository.save(wallet);
+        customerRepository.save(customer);
+        UserEntity saved = userRepository.save(userEntity);
+
+        return mapper.map(saved, UserDto.class);
     }
+
 
     @Override
     public UserDto assignRoleToUser(Long userId, Roles role) {
         Optional<UserEntity> user = userRepository.findById(userId);
         if (user.isPresent()) {
             user.get().setRole(role);
-        }
-        else {
+        } else {
             throw new RuntimeException("User with ID: " + user.get().getId() + " not found");
         }
         UserEntity savedUser = userRepository.save(user.get());

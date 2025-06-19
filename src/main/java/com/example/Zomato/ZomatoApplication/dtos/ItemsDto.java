@@ -1,5 +1,6 @@
 package com.example.Zomato.ZomatoApplication.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,6 @@ public class ItemsDto {
     private String name;
     private double price;
     private int quantity;
-    private OrderDto order;
-    private RestaurantDto restaurant;
+    private Long orderId;
+    private Long restaurantId;
 }

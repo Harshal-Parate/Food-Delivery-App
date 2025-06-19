@@ -2,6 +2,7 @@ package com.example.Zomato.ZomatoApplication.entites;
 
 import com.example.Zomato.ZomatoApplication.enums.PaymentStatus;
 import com.example.Zomato.ZomatoApplication.enums.PaymentType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,11 +33,11 @@ public class OrderEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    private CustomerEntity customerEntity;
+    private CustomerEntity customer;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<ItemsEntity> items;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private DeliveryEntity deliveryEntity;
+    private DeliveryEntity delivery;
 }

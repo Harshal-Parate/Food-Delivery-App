@@ -1,5 +1,6 @@
 package com.example.Zomato.ZomatoApplication.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 public class WalletDto {
 
     private Long id;
-    private double balance;
+    private Double balance;
     private LocalDateTime createdAt;
-    private CustomerDto customer;
 }

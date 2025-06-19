@@ -25,10 +25,10 @@ public class DeliveryEntity {
 
     @ManyToOne
     @JoinColumn(name = "driver_id")
-    private DriverEntity driverEntity;
+    private DriverEntity driver;
 
     @OneToOne
     @JoinColumn(name = "order_id")
-    private OrderEntity orderEntity;
+    private OrderEntity order;
 }
 

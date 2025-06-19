@@ -1,5 +1,6 @@
 package com.example.Zomato.ZomatoApplication.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(setterPrefix = "set")
 public class WalletEntity {
 
     @Id
@@ -26,5 +26,5 @@ public class WalletEntity {
     private LocalDateTime createdAt;
 
     @OneToOne(mappedBy = "wallet")
-    private CustomerEntity customerEntity;
+    private CustomerEntity customer;
 }

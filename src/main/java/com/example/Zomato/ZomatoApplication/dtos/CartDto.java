@@ -14,5 +14,4 @@ public class CartDto {
     private Long id;
     private List<ItemsDto> items;
     private double total;
-    private CustomerDto customer;
 }
