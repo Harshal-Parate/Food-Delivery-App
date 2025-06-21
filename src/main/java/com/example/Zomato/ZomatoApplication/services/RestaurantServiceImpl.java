@@ -126,8 +126,6 @@ public class RestaurantServiceImpl implements RestaurantService {
         return mapper.map(saved, RestaurantDto.class);
     }
 
-
-
     @Override
     public RestaurantDto getRatingOfRestaurant(Long restaurantId) {
         RestaurantEntity restaurant = restaurantRepository.findById(restaurantId)
