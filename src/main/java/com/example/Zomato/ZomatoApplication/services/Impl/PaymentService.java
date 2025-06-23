@@ -6,7 +6,7 @@ public interface PaymentService {
 
     //Handles payments, wallets
 
-    String processPayment(Long orderId);
+    String processPayment(Long orderId, Long customerId);
 
     WalletDto addFundsToWallet(Double funds, Long userId);
 
