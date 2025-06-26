@@ -1,4 +1,4 @@
-package com.example.Zomato.ZomatoApplication.services.Impl;
+package com.example.Zomato.ZomatoApplication.services;
 
 import com.example.Zomato.ZomatoApplication.dtos.UserDto;
 import com.example.Zomato.ZomatoApplication.enums.Roles;
@@ -13,5 +13,9 @@ public interface UserService {
 
     UserDto assignRoleToUser(Long userId, Roles role);
 
-    String login(String username, String password);
+    UserDto createUser(UserDto userDto);
+
+    UserDto refreshToken(String refreshToken);
+
+    UserDto authenticateUser(UserDto userDto);
 }

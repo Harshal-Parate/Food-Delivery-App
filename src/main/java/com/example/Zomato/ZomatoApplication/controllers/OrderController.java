@@ -4,7 +4,7 @@ import com.example.Zomato.ZomatoApplication.dtos.CartDto;
 import com.example.Zomato.ZomatoApplication.dtos.CustomerDto;
 import com.example.Zomato.ZomatoApplication.dtos.ItemsDto;
 import com.example.Zomato.ZomatoApplication.dtos.OrderDto;
-import com.example.Zomato.ZomatoApplication.services.OrderServiceImpl;
+import com.example.Zomato.ZomatoApplication.services.impl.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

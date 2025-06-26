@@ -2,7 +2,7 @@ package com.example.Zomato.ZomatoApplication.controllers;
 
 import com.example.Zomato.ZomatoApplication.dtos.DeliveryDto;
 import com.example.Zomato.ZomatoApplication.dtos.OrderDto;
-import com.example.Zomato.ZomatoApplication.services.DeliveryServiceImpl;
+import com.example.Zomato.ZomatoApplication.services.impl.DeliveryServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

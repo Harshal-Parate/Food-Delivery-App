@@ -24,6 +24,16 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
+    public ResponseEntity<ApiResponse<?>> handleResourceNotFoundException(Exception exception) {
+        ApiError apiError = ApiError
+                .builder()
+                .setMessage(exception.getMessage())
+                .setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .build();
+        return handleApiError(apiError);
+    }
+
+    @ExceptionHandler
     public ResponseEntity<ApiResponse<?>> handleInvalidInputs(MethodArgumentNotValidException exception) {
         List<String> subErrors = exception.getAllErrors()
                 .stream().map(e -> e.getDefaultMessage())

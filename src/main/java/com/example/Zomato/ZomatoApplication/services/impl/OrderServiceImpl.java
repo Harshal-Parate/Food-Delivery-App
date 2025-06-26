@@ -1,4 +1,4 @@
-package com.example.Zomato.ZomatoApplication.services;
+package com.example.Zomato.ZomatoApplication.services.impl;
 
 import com.example.Zomato.ZomatoApplication.dtos.CartDto;
 import com.example.Zomato.ZomatoApplication.dtos.CustomerDto;
@@ -8,7 +8,8 @@ import com.example.Zomato.ZomatoApplication.entites.*;
 import com.example.Zomato.ZomatoApplication.enums.PaymentStatus;
 import com.example.Zomato.ZomatoApplication.enums.PaymentType;
 import com.example.Zomato.ZomatoApplication.repositories.*;
-import com.example.Zomato.ZomatoApplication.services.Impl.OrderService;
+import com.example.Zomato.ZomatoApplication.services.OrderService;
+import com.example.Zomato.ZomatoApplication.services.impl.OrderService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

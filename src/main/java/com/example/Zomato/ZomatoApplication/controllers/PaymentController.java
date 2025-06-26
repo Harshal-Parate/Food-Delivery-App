@@ -1,7 +1,7 @@
 package com.example.Zomato.ZomatoApplication.controllers;
 
 import com.example.Zomato.ZomatoApplication.dtos.WalletDto;
-import com.example.Zomato.ZomatoApplication.services.PaymentServiceImpl;
+import com.example.Zomato.ZomatoApplication.services.impl.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

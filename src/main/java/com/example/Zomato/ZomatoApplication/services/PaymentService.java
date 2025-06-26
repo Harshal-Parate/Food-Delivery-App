@@ -1,4 +1,4 @@
-package com.example.Zomato.ZomatoApplication.services.Impl;
+package com.example.Zomato.ZomatoApplication.services;
 
 import com.example.Zomato.ZomatoApplication.dtos.WalletDto;
 

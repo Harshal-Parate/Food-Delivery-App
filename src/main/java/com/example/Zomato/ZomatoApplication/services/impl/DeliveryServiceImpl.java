@@ -1,4 +1,4 @@
-package com.example.Zomato.ZomatoApplication.services;
+package com.example.Zomato.ZomatoApplication.services.impl;
 
 import com.example.Zomato.ZomatoApplication.dtos.DeliveryDto;
 import com.example.Zomato.ZomatoApplication.dtos.OrderDto;
@@ -9,7 +9,8 @@ import com.example.Zomato.ZomatoApplication.enums.DeliveryStatus;
 import com.example.Zomato.ZomatoApplication.repositories.DeliveryRepository;
 import com.example.Zomato.ZomatoApplication.repositories.DriverRepository;
 import com.example.Zomato.ZomatoApplication.repositories.OrderRepository;
-import com.example.Zomato.ZomatoApplication.services.Impl.DeliveryService;
+import com.example.Zomato.ZomatoApplication.services.DeliveryService;
+import com.example.Zomato.ZomatoApplication.services.impl.DeliveryService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

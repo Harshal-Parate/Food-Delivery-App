@@ -1,8 +1,6 @@
 package com.example.Zomato.ZomatoApplication.dtos;
 
 import com.example.Zomato.ZomatoApplication.enums.Roles;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +15,12 @@ public class UserDto {
     private String email;
     private String password;
     private Roles role;
-    
+    private String accessToken;
+    private String refreshToken;
+
+    public UserDto(Long id, String accessToken, String refreshToken) {
+        this.id = id;
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+    }
 }

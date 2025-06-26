@@ -1,4 +1,4 @@
-package com.example.Zomato.ZomatoApplication.services;
+package com.example.Zomato.ZomatoApplication.services.impl;
 
 import com.example.Zomato.ZomatoApplication.dtos.WalletDto;
 import com.example.Zomato.ZomatoApplication.entites.CustomerEntity;
@@ -10,7 +10,8 @@ import com.example.Zomato.ZomatoApplication.repositories.CustomerRepository;
 import com.example.Zomato.ZomatoApplication.repositories.OrderRepository;
 import com.example.Zomato.ZomatoApplication.repositories.UserRepository;
 import com.example.Zomato.ZomatoApplication.repositories.WalletRepository;
-import com.example.Zomato.ZomatoApplication.services.Impl.PaymentService;
+import com.example.Zomato.ZomatoApplication.services.PaymentService;
+import com.example.Zomato.ZomatoApplication.services.impl.PaymentService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
