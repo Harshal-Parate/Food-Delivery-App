@@ -6,7 +6,7 @@ import com.example.Zomato.ZomatoApplication.entites.ItemsEntity;
 import com.example.Zomato.ZomatoApplication.entites.RestaurantEntity;
 import com.example.Zomato.ZomatoApplication.repositories.ItemRepository;
 import com.example.Zomato.ZomatoApplication.repositories.RestaurantRepository;
-import com.example.Zomato.ZomatoApplication.services.impl.RestaurantService;
+import com.example.Zomato.ZomatoApplication.services.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,11 @@
 package com.example.Zomato.ZomatoApplication.controllers;
 
 import com.example.Zomato.ZomatoApplication.dtos.UserDto;
-import com.example.Zomato.ZomatoApplication.enums.Roles;
 import com.example.Zomato.ZomatoApplication.services.impl.UserServiceImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class AuthController {
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/Login")
+    @PostMapping(path = "/login")
     public ResponseEntity<?> loginUser(@RequestBody UserDto loginDto,
                                        HttpServletResponse response) {
         UserDto userDto = userService.authenticateUser(loginDto);
@@ -66,7 +66,7 @@ public class AuthController {
 
     @PutMapping(path = "/assign-role/{userId}")
     public ResponseEntity<?> assignRoleToUser(@PathVariable(value = "userId") Long userId,
-                                              @RequestBody Roles role) {
+                                              @PathParam(value = "role") String role ) {
         UserDto newUser = userService.assignRoleToUser(userId, role);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }

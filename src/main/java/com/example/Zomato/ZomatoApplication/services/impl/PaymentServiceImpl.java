@@ -11,7 +11,6 @@ import com.example.Zomato.ZomatoApplication.repositories.OrderRepository;
 import com.example.Zomato.ZomatoApplication.repositories.UserRepository;
 import com.example.Zomato.ZomatoApplication.repositories.WalletRepository;
 import com.example.Zomato.ZomatoApplication.services.PaymentService;
-import com.example.Zomato.ZomatoApplication.services.impl.PaymentService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

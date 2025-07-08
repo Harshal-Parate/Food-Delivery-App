@@ -10,7 +10,6 @@ import com.example.Zomato.ZomatoApplication.repositories.DeliveryRepository;
 import com.example.Zomato.ZomatoApplication.repositories.DriverRepository;
 import com.example.Zomato.ZomatoApplication.repositories.OrderRepository;
 import com.example.Zomato.ZomatoApplication.services.DeliveryService;
-import com.example.Zomato.ZomatoApplication.services.impl.DeliveryService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

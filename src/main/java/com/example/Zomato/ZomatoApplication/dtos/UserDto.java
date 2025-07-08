@@ -23,4 +23,11 @@ public class UserDto {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
     }
+
+    public UserDto(Long id, String email, String accessToken, String refreshToken) {
+        this.id = id;
+        this.email = email;
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+    }
 }

@@ -2,6 +2,8 @@ package com.example.Zomato.ZomatoApplication.services;
 
 import com.example.Zomato.ZomatoApplication.dtos.UserDto;
 import com.example.Zomato.ZomatoApplication.enums.Roles;
+import com.example.Zomato.ZomatoApplication.services.impl.JwtService;
+import com.example.Zomato.ZomatoApplication.services.impl.SessionService;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public interface UserService {
 
     UserDto onBoardCustomer(UserDto user);
 
-    UserDto assignRoleToUser(Long userId, Roles role);
+    UserDto assignRoleToUser(Long userId, String role);
 
     UserDto createUser(UserDto userDto);
 
